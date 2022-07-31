@@ -3,4 +3,4 @@
 
 from .version import __version__
 
-from .vector import Vector
+from .vector import Vector3D
