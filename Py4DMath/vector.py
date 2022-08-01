@@ -40,3 +40,13 @@ class Vector3D:
 
   def copy(self) -> Vector3D: 
     return deepcopy(self)
+
+  def dot(self, v: Vector3D) -> float:
+    return self.x * v.x + self.y * v.y + self.x * v.z
+
+  def cross(self, v: Vector3D) -> Vector3D:
+    return Vector3D(
+      self.y * v.z - self.z * v.y,
+      self.z * v.x - self.x * v.z,
+      self.x * v.y - self.y * v.x,
+    )
