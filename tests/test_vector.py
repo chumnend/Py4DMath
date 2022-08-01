@@ -37,3 +37,19 @@ def test_Vector3D_subtract():
   assert v3.x == 3
   assert v3.y == 3
   assert v3.z == 3
+
+def test_Vector3D_multiply():
+  v1 = Vector3D(1, 2, 3)
+  v2 = v1 * 2
+
+  assert v2.x == 2
+  assert v2.y == 4
+  assert v2.z == 6
+
+def test_Vector3D_add():
+  v1 = Vector3D(4, 6, 8)
+  v2 = v1 / 2
+
+  assert v2.x == 2
+  assert v2.y == 3
+  assert v2.z == 4

@@ -24,5 +24,19 @@ class Vector3D:
       self.z - v.z,
     )
 
+  def __mul__(self, k: float) -> Vector3D:
+    return Vector3D(
+      k * self.x,
+      k * self.y,
+      k * self.z,
+    )
+
+  def __truediv__(self, k: float) -> Vector3D:
+    return Vector3D(
+      self.x / k,
+      self.y / k,
+      self.z / k,
+    )
+
   def copy(self) -> Vector3D: 
     return deepcopy(self)
