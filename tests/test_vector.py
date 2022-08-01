@@ -1,4 +1,5 @@
 from Py4DMath import Vector3D
+from math import sqrt
 
 def test_Vector3D_init_with_no_values():
   v = Vector3D()
@@ -106,3 +107,17 @@ def test_Vector3D_cross():
   assert v3.x == -2
   assert v3.y == 1
   assert v3.z == 1
+
+def test_Vector3D_magnitude():
+  v1 = Vector3D(2, 3, 1)
+  m = v1.magnitude()
+
+  assert m == sqrt(14)
+
+def test_Vector3D_normalize():
+  v1 = Vector3D(2, 3, 1)
+  n = v1.normalize()
+
+  assert n.x == (1 / sqrt(14)) * 2
+  assert n.y == (1 / sqrt(14)) * 3
+  assert n.z == (1 / sqrt(14)) * 1

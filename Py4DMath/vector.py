@@ -1,5 +1,6 @@
 from __future__ import annotations
 from copy import deepcopy
+from math import sqrt
 
 class Vector3D:
   def __init__(self, x: float = 0.0, y: float = 0.0, z: float = 0.0):
@@ -78,3 +79,19 @@ class Vector3D:
       self.z * v.x - self.x * v.z,
       self.x * v.y - self.y * v.x,
     )
+
+  def magnitude(self) -> float:
+    return sqrt(self.x*self.x + self.y*self.y + self.z*self.z)
+
+  def normalize(self) -> Vector3D:
+    m = self.magnitude()
+
+    if (m > 0.0):
+      factor = 1.0 / m
+      return Vector3D(
+        factor * self.x,
+        factor * self.y,
+        factor * self.z,
+      )
+    else:
+      return Vector3D()
