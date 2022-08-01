@@ -19,3 +19,21 @@ def test_Vector3D_copy():
   assert v.x == copy_v.x
   assert v.y == copy_v.y
   assert v.z == copy_v.z
+
+def test_Vector3D_add():
+  v1 = Vector3D(1, 2, 3)
+  v2 = Vector3D(4, 5, 6)
+
+  v3 = v1 + v2
+  assert v3.x == 5
+  assert v3.y == 7
+  assert v3.z == 9
+
+def test_Vector3D_subtract():
+  v1 = Vector3D(1, 2, 3)
+  v2 = Vector3D(4, 5, 6)
+
+  v3 = v2 - v1
+  assert v3.x == 3
+  assert v3.y == 3
+  assert v3.z == 3
