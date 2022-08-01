@@ -41,6 +41,34 @@ class Vector3D:
   def copy(self) -> Vector3D: 
     return deepcopy(self)
 
+  def add(self, v: Vector3D) -> Vector3D:
+    return Vector3D(
+      self.x + v.x,
+      self.y + v.y,
+      self.z + v.z,
+    )
+
+  def subtract(self, v:  Vector3D) -> Vector3D:
+    return Vector3D(
+      self.x - v.x,
+      self.y - v.y,
+      self.z - v.z,
+    )
+
+  def multiply(self, k: float) -> Vector3D:
+    return Vector3D(
+      k * self.x,
+      k * self.y,
+      k * self.z,
+    )
+
+  def divide(self, k: float) -> Vector3D:
+    return Vector3D(
+      self.x / k,
+      self.y / k,
+      self.z / k,
+    )
+
   def dot(self, v: Vector3D) -> float:
     return self.x * v.x + self.y * v.y + self.x * v.z
 

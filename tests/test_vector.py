@@ -22,7 +22,7 @@ def test_Vector3D_copy():
   assert v.y == copy_v.y
   assert v.z == copy_v.z
 
-def test_Vector3D_add():
+def test_Vector3D_add_operator():
   v1 = Vector3D(1, 2, 3)
   v2 = Vector3D(4, 5, 6)
   v3 = v1 + v2
@@ -31,7 +31,16 @@ def test_Vector3D_add():
   assert v3.y == 7
   assert v3.z == 9
 
-def test_Vector3D_subtract():
+def test_Vector3D_add_method():
+  v1 = Vector3D(1, 2, 3)
+  v2 = Vector3D(4, 5, 6)
+  v3 = v1.add(v2)
+
+  assert v3.x == 5
+  assert v3.y == 7
+  assert v3.z == 9
+
+def test_Vector3D_subtract_operator():
   v1 = Vector3D(1, 2, 3)
   v2 = Vector3D(4, 5, 6)
   v3 = v2 - v1
@@ -40,7 +49,16 @@ def test_Vector3D_subtract():
   assert v3.y == 3
   assert v3.z == 3
 
-def test_Vector3D_multiply():
+def test_Vector3D_subtract_method():
+  v1 = Vector3D(1, 2, 3)
+  v2 = Vector3D(4, 5, 6)
+  v3 = v2.subtract(v1)
+
+  assert v3.x == 3
+  assert v3.y == 3
+  assert v3.z == 3
+
+def test_Vector3D_multiply_operator():
   v1 = Vector3D(1, 2, 3)
   v2 = v1 * 2
 
@@ -48,9 +66,26 @@ def test_Vector3D_multiply():
   assert v2.y == 4
   assert v2.z == 6
 
-def test_Vector3D_add():
+def test_Vector3D_multiply_method():
+  v1 = Vector3D(1, 2, 3)
+  v2 = v1.multiply(2)
+
+  assert v2.x == 2
+  assert v2.y == 4
+  assert v2.z == 6
+
+
+def test_Vector3D_divide_operator():
   v1 = Vector3D(4, 6, 8)
   v2 = v1 / 2
+
+  assert v2.x == 2
+  assert v2.y == 3
+  assert v2.z == 4
+
+def test_Vector3D_divide_method():
+  v1 = Vector3D(4, 6, 8)
+  v2 = v1.divide(2)
 
   assert v2.x == 2
   assert v2.y == 3
