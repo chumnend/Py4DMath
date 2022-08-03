@@ -50,6 +50,10 @@ class Vector3D:
         the y position of the vector
       z: float
         the z position of the vector
+      
+    Returns
+    ----------
+      None
     """
 
     self.x = x
