@@ -20,7 +20,9 @@ class Matrix3D:
     add():
       Returns the result of matrix addition.
     subtract():
-      Returns the result of matrix subtraction.    
+      Returns the result of matrix subtraction.
+    multiply():
+      Returns a vector multiplied by a scalar value. 
   """
 
   def __init__(self, m0: float = 0, m3: float = 0, m6: float = 0, m1: float = 0, m4: float = 0, m7: float = 0, m2: float = 0, m5: float = 0, m8: float = 0):
@@ -97,6 +99,19 @@ class Matrix3D:
       self.matrix[2] - m.matrix[2],
       self.matrix[5] - m.matrix[5],
       self.matrix[8] - m.matrix[8],
+    )
+
+  def __mul__(self, k: float) -> Matrix3D:
+    return Matrix3D(
+      k * self.matrix[0],
+      k * self.matrix[3],
+      k * self.matrix[6],
+      k * self.matrix[1],
+      k * self.matrix[4],
+      k * self.matrix[7],
+      k * self.matrix[2],
+      k * self.matrix[5],
+      k * self.matrix[8],
     )
 
   def copy(self) -> Matrix3D:
@@ -178,4 +193,29 @@ class Matrix3D:
       self.matrix[2] - m.matrix[2],
       self.matrix[5] - m.matrix[5],
       self.matrix[8] - m.matrix[8],
+    )
+
+  def multiply(self, k: float) -> Matrix3D:
+    """
+    Returns a matrix multiplied by a scalar value.
+
+    Parameters
+    ----------
+      k: float
+        scaler value to multply by
+
+    Returns
+    ----------
+      (Matrix3D) the resulting matrix
+    """
+    return Matrix3D(
+      k * self.matrix[0],
+      k * self.matrix[3],
+      k * self.matrix[6],
+      k * self.matrix[1],
+      k * self.matrix[4],
+      k * self.matrix[7],
+      k * self.matrix[2],
+      k * self.matrix[5],
+      k * self.matrix[8],
     )

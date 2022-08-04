@@ -47,3 +47,15 @@ def test_Matrix3D_sub_method():
   mn = m.subtract(n)
 
   assert mn.matrix == [-3, 0, 0, 0, 0, 0, -1, 3, 0]
+
+def test_Matrix3D_multiply_operator():
+  m = Matrix3D(2, 3, 1, 2, 1, 4, 5, 3, 2)
+  km = m * 2
+
+  assert km.matrix == [4, 4, 10, 6, 2, 6, 2, 8, 4]
+
+def test_Matrix3D_multiply_method():
+  m = Matrix3D(2, 3, 1, 2, 1, 4, 5, 3, 2)
+  km = m.multiply(2)
+
+  assert km.matrix == [4, 4, 10, 6, 2, 6, 2, 8, 4]
