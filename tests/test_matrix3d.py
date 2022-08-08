@@ -67,8 +67,15 @@ def test_Matrix3D_multiply_operator_matrix():
 
   assert c.matrix == [63, 42, 76, 38, 24, 46, 28, 15, 32]
 
-def test_Matrix3D_multiply_method():
-  m = Matrix3D(2, 3, 1, 2, 1, 4, 5, 3, 2)
-  km = m.multiply(2)
+def test_Matrix3D_scalar_multiply():
+  a = Matrix3D(2, 3, 1, 2, 1, 4, 5, 3, 2)
+  b = a.scalar_multiply(2)
 
-  assert km.matrix == [4, 4, 10, 6, 2, 6, 2, 8, 4]
+  assert b.matrix == [4, 4, 10, 6, 2, 6, 2, 8, 4]
+
+def test_Matrix3D_matrix_multiply():
+  a = Matrix3D(7, 6, 3, 4, 2, 5, 10, 6, 4)
+  b = Matrix3D(3, 2, 1, 5, 3, 3, 4, 2, 1)
+  c = a.matrix_multiply(b)
+
+  assert c.matrix == [63, 42, 76, 38, 24, 46, 28, 15, 32]

@@ -21,8 +21,10 @@ class Matrix3D:
       Returns the result of matrix addition.
     subtract():
       Returns the result of matrix subtraction.
-    multiply():
-      Returns a vector multiplied by a scalar value. 
+    scalar_multiply():
+      Returns a vector multiplied by a scalar value.
+    matrix_multiply():
+      Returns a vector multiplied by another matrix. 
   """
 
   def __init__(self, m0: float = 0, m3: float = 0, m6: float = 0, m1: float = 0, m4: float = 0, m7: float = 0, m2: float = 0, m5: float = 0, m8: float = 0):
@@ -212,7 +214,7 @@ class Matrix3D:
       self.matrix[8] - m.matrix[8],
     )
 
-  def multiply(self, k: float) -> Matrix3D:
+  def scalar_multiply(self, k: float) -> Matrix3D:
     """
     Returns a matrix multiplied by a scalar value.
 
@@ -235,4 +237,32 @@ class Matrix3D:
       k * self.matrix[2],
       k * self.matrix[5],
       k * self.matrix[8],
+    )
+
+
+  def matrix_multiply(self, k: Matrix3D()) -> Matrix3D:
+    """
+    Returns a matrix multiplied by another matrix.
+
+    Parameters
+    ----------
+      k:  Matrix3D
+        matrix to multiply by
+
+    Returns
+    ----------
+      (Matrix3D) the resulting matrix
+    """
+    return Matrix3D(
+      self.matrix[0]*k.matrix[0] + self.matrix[3]*k.matrix[1] + self.matrix[6]*k.matrix[2],
+      self.matrix[0]*k.matrix[3] + self.matrix[3]*k.matrix[4] + self.matrix[6]*k.matrix[5],
+      self.matrix[0]*k.matrix[6] + self.matrix[3]*k.matrix[7] + self.matrix[6]*k.matrix[8],
+
+      self.matrix[1]*k.matrix[0] + self.matrix[4]*k.matrix[1] + self.matrix[7]*k.matrix[2],
+      self.matrix[1]*k.matrix[3] + self.matrix[4]*k.matrix[4] + self.matrix[7]*k.matrix[5],
+      self.matrix[1]*k.matrix[6] + self.matrix[4]*k.matrix[7] + self.matrix[7]*k.matrix[8],
+
+      self.matrix[2]*k.matrix[0] + self.matrix[5]*k.matrix[1] + self.matrix[8]*k.matrix[2],
+      self.matrix[2]*k.matrix[3] + self.matrix[5]*k.matrix[4] + self.matrix[8]*k.matrix[5],
+      self.matrix[2]*k.matrix[6] + self.matrix[5]*k.matrix[7] + self.matrix[8]*k.matrix[8],
     )
