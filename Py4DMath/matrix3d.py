@@ -24,7 +24,9 @@ class Matrix3D:
     scalar_multiply():
       Returns a vector multiplied by a scalar value.
     matrix_multiply():
-      Returns a vector multiplied by another matrix. 
+      Returns a vector multiplied by another matrix.
+    setIdentity():
+      Sets matrix as an identity matrix.
   """
 
   def __init__(self, m0: float = 0, m3: float = 0, m6: float = 0, m1: float = 0, m4: float = 0, m7: float = 0, m2: float = 0, m5: float = 0, m8: float = 0):
@@ -266,3 +268,20 @@ class Matrix3D:
       self.matrix[2]*k.matrix[3] + self.matrix[5]*k.matrix[4] + self.matrix[8]*k.matrix[5],
       self.matrix[2]*k.matrix[6] + self.matrix[5]*k.matrix[7] + self.matrix[8]*k.matrix[8],
     )
+
+  def setIdentity(self):
+    """
+    Sets matrix as an identity matrix.
+
+    Parameters
+    ----------
+      None
+
+    Returns
+    ----------
+      None
+    """
+    for i in range(9):
+      self.matrix[i] = 0.0
+
+    self.matrix[0] = self.matrix[4] = self.matrix[8] = 1.0
