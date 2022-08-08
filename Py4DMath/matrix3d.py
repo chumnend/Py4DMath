@@ -30,7 +30,7 @@ class Matrix3D:
     Constructs all necessary attributes for the Matrix3D object
 
       0  3  6
-      1  4  7
+      1  4  7   -> [0 1 2 3 4 5 6 7 8]
       2  5  8
 
     Parameters
@@ -101,18 +101,35 @@ class Matrix3D:
       self.matrix[8] - m.matrix[8],
     )
 
-  def __mul__(self, k: float) -> Matrix3D:
-    return Matrix3D(
-      k * self.matrix[0],
-      k * self.matrix[3],
-      k * self.matrix[6],
-      k * self.matrix[1],
-      k * self.matrix[4],
-      k * self.matrix[7],
-      k * self.matrix[2],
-      k * self.matrix[5],
-      k * self.matrix[8],
-    )
+  def __mul__(self, k: int or float or Matrix3D) -> Matrix3D:
+    if isinstance(k, float) or isinstance(k, int):
+      return Matrix3D(
+        k * self.matrix[0],
+        k * self.matrix[3],
+        k * self.matrix[6],
+        k * self.matrix[1],
+        k * self.matrix[4],
+        k * self.matrix[7],
+        k * self.matrix[2],
+        k * self.matrix[5],
+        k * self.matrix[8],
+      )
+    elif isinstance(k, Matrix3D):
+      return Matrix3D(
+        self.matrix[0]*k.matrix[0] + self.matrix[3]*k.matrix[1] + self.matrix[6]*k.matrix[2],
+        self.matrix[0]*k.matrix[3] + self.matrix[3]*k.matrix[4] + self.matrix[6]*k.matrix[5],
+        self.matrix[0]*k.matrix[6] + self.matrix[3]*k.matrix[7] + self.matrix[6]*k.matrix[8],
+
+        self.matrix[1]*k.matrix[0] + self.matrix[4]*k.matrix[1] + self.matrix[7]*k.matrix[2],
+        self.matrix[1]*k.matrix[3] + self.matrix[4]*k.matrix[4] + self.matrix[7]*k.matrix[5],
+        self.matrix[1]*k.matrix[6] + self.matrix[4]*k.matrix[7] + self.matrix[7]*k.matrix[8],
+
+        self.matrix[2]*k.matrix[0] + self.matrix[5]*k.matrix[1] + self.matrix[8]*k.matrix[2],
+        self.matrix[2]*k.matrix[3] + self.matrix[5]*k.matrix[4] + self.matrix[8]*k.matrix[5],
+        self.matrix[2]*k.matrix[6] + self.matrix[5]*k.matrix[7] + self.matrix[8]*k.matrix[8],
+      )
+    else:
+      raise TypeError(f"{type(k)} is not supported.")
 
   def copy(self) -> Matrix3D:
     """
