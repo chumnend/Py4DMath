@@ -27,6 +27,8 @@ class Matrix3D:
       Returns a vector multiplied by another matrix.
     setIdentity():
       Sets matrix as an identity matrix.
+    inverse():
+      Returns the inverse of the matrix.
   """
 
   def __init__(self, m0: float = 0, m3: float = 0, m6: float = 0, m1: float = 0, m4: float = 0, m7: float = 0, m2: float = 0, m5: float = 0, m8: float = 0):
@@ -273,6 +275,10 @@ class Matrix3D:
     """
     Sets matrix as an identity matrix.
 
+        1 0 0
+    I = 0 1 0
+        0 0 1 
+
     Parameters
     ----------
       None
@@ -285,3 +291,55 @@ class Matrix3D:
       self.matrix[i] = 0.0
 
     self.matrix[0] = self.matrix[4] = self.matrix[8] = 1.0
+
+  def inverse(self) -> Matrix3D or None:
+    """
+    Returns the inverse of the matrix.
+
+             m0 m3 m6 ^-1        1     A D G
+    M^-1  =  m1 m4 m7      =    ---    B E H
+             m2 m5 m8          det(M)  C F I
+
+    A = m4m8 - m7m5   D = -(m3m8-m5m6)  G = m3m7-m4m6
+    B = -(m1m8-m7m2)  E = m0m8-m6m2     H = -(m0m7-m1m6)
+    C = m1m5-m4m2     F = -(m0m5-m3m2)  I = m0m4-m3m1
+
+    det(M) = m0A + m3B + m6C
+
+    Parameters
+    ----------
+      None
+
+    Returns
+    ----------
+      (Matrix3D) the inverse of the matrix or None if invalid.
+    """
+
+    A = self.matrix[4]*self.matrix[8] - self.matrix[7]*self.matrix[5]
+    B = -(self.matrix[1]*self.matrix[8] - self.matrix[7]*self.matrix[2])
+    C = self.matrix[1]*self.matrix[5] - self.matrix[4] * self.matrix[2]
+    D = -(self.matrix[3]*self.matrix[8] - self.matrix[5]*self.matrix[6])
+    E = self.matrix[0]*self.matrix[8] - self.matrix[6]*self.matrix[2]
+    F = -(self.matrix[0]*self.matrix[5] - self.matrix[3]*self.matrix[2])
+    G = self.matrix[3]*self.matrix[7] - self.matrix[4]*self.matrix[6]
+    H = -(self.matrix[0]*self.matrix[7] - self.matrix[1]*self.matrix[6])
+    I = self.matrix[0]*self.matrix[4] - self.matrix[3]*self.matrix[1]
+
+    det = self.matrix[0]*A + self.matrix[3]*B + self.matrix[6]*C
+
+    if det == 0:
+      return None
+
+    det_inv = 1.0 / det
+
+    return Matrix3D(
+      det_inv*A,
+      det_inv*B,
+      det_inv*C,
+      det_inv*D,
+      det_inv*E,
+      det_inv*F,
+      det_inv*G,
+      det_inv*H,
+      det_inv*I,
+    )

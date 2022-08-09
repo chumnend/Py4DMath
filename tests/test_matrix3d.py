@@ -85,3 +85,15 @@ def test_set_identity():
   a.setIdentity()
 
   assert a.matrix == [1, 0 ,0, 0, 1, 0, 0, 0, 1]
+
+
+def test_inverse():
+  """
+      2 1 4           -1/5  -1/5  1
+  M = 3 4 1    M^-1 =  1/15  2/5 -2/3
+      2 1 1            1/3   0   -1/3
+  """
+  m = Matrix3D(2, 3, 2, 1, 4, 1, 4, 1, 1)
+  m_inv = m.inverse()
+
+  assert m_inv.matrix == [-1/5, 1/15, 1/3, -1/5, 2/5, 0, 1, -2/3, -1/3]
