@@ -37,6 +37,14 @@ source venv/bin/activate
 make install-deps
 ```
 
+## Version Changes
+
+***NOTE***: When making updates to the source code, make sure to bump versions.
+
+1) Update the version number in Py4DMath/version.py, using [semantic versioning](https://semver.org).
+
+2) Update the CHANGES.txt with the new version number and detail what changed.
+
 ### Contact 
 Nicholas Chumney - [nicholas.chumney@outlook.com](nicholas.chumney@outlook.com) 
 

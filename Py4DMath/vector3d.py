@@ -9,33 +9,35 @@ class Vector3D:
   ...
   Attributes
   ----------
-  x: float
-    the x position of the vector
-  y: float
-    the y position of the vector
-  z: float
-    the z position of the vector
+    x: float
+      the x position of the vector
+    y: float
+      the y position of the vector
+    z: float
+      the z position of the vector
   
   Methods
   ----------
-  copy():
-    Returns a copy of the vector.
-  add():
-    Returns the result of vector addition.
-  subtract():
-    Returns the result of vector subtraction.
-  multiply():
-    Returns a vector multiplied by a scalar value.
-  divide():
-    Returns a vector divided by a scalar value.
-  dot():
-    Returns the dot product between two vectors.
-  cross():
-    Returns the cross product between two vectors.
-  magnitude():
-    Returns the magnitude of the vector.
-  normalize():
-    Returns the normalized unit vector.
+    copy():
+      Returns a copy of the vector.
+    show():
+      Prints visual representation of the vector.
+    add():
+      Returns the result of vector addition.
+    subtract():
+      Returns the result of vector subtraction.
+    multiply():
+      Returns a vector multiplied by a scalar value.
+    divide():
+      Returns a vector divided by a scalar value.
+    dot():
+      Returns the dot product between two vectors.
+    cross():
+      Returns the cross product between two vectors.
+    magnitude():
+      Returns the magnitude of the vector.
+    normalize():
+      Returns the normalized unit vector.
   """
 
   def __init__(self, x: float = 0.0, y: float = 0.0, z: float = 0.0):
@@ -50,6 +52,10 @@ class Vector3D:
         the y position of the vector
       z: float
         the z position of the vector
+      
+    Returns
+    ----------
+      None
     """
 
     self.x = x
@@ -93,13 +99,28 @@ class Vector3D:
 
     Parameters
     ----------
-    None
+      None
 
     Returns
     ----------
       (Vector3D) the copied vector
     """
     return deepcopy(self)
+
+  def show(self) -> None:
+    """
+    Prints the vector.
+
+    Parameters
+    ----------
+      None
+
+    Returns
+    ----------
+      None
+    """
+
+    print(f"[{self.x} {self.y} {self.z}]")
 
   def add(self, v: Vector3D) -> Vector3D:
     """
@@ -219,7 +240,7 @@ class Vector3D:
 
     Parameters
     ----------
-    None
+      None
 
     Returns
     ----------
@@ -233,7 +254,7 @@ class Vector3D:
 
     Parameters
     ----------
-    None
+      None
 
     Returns
     ----------
