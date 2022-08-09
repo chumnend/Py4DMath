@@ -20,6 +20,8 @@ class Vector3D:
   ----------
     copy():
       Returns a copy of the vector.
+    show():
+      Prints visual representation of the vector.
     add():
       Returns the result of vector addition.
     subtract():
@@ -104,6 +106,21 @@ class Vector3D:
       (Vector3D) the copied vector
     """
     return deepcopy(self)
+
+  def show(self) -> None:
+    """
+    Prints the vector.
+
+    Parameters
+    ----------
+      None
+
+    Returns
+    ----------
+      None
+    """
+
+    print(f"[{self.x} {self.y} {self.z}]")
 
   def add(self, v: Vector3D) -> Vector3D:
     """
