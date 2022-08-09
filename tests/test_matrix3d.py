@@ -91,6 +91,12 @@ def test_inverse():
 
   assert m_inv.matrix == [-1/5, 1/15, 1/3, -1/5, 2/5, 0, 1, -2/3, -1/3]
 
+def test_transpose():
+  m = Matrix3D(2, 1, 4, 3, 4, 1, 2, 1, 1)
+  m_trans = m.transpose()
+
+  assert m_trans.matrix == [2, 1, 4, 3, 4, 1, 2, 1, 1]
+
 def test_set_as_identity_matrix():
   a = Matrix3D(7, 6, 3, 4, 2, 5, 10, 6, 4)
   a.setAsIdentityMatrix()

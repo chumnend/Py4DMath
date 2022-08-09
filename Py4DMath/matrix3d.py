@@ -32,6 +32,8 @@ class Matrix3D:
       Returns a vector multiplied by another matrix.
     inverse():
       Returns the inverse of the matrix.
+    transpose():
+      Returns the transpose of the matrix.
     setAsIdentityMatrix():
       Sets matrix as an identity matrix.
   """
@@ -345,6 +347,34 @@ class Matrix3D:
       det_inv*G,
       det_inv*H,
       det_inv*I,
+    )
+
+  def transpose(self) -> Matrix3D:
+    """
+    Returns the transpose of the matrix.
+
+          m0 m3 m6              m0 m1 m2
+    M  =  m1 m4 m7      M^T  =  m3 m4 m5
+          m2 m5 m8              m6 m7 m8
+
+    Parameters
+    ----------
+      None
+
+    Returns
+    ----------
+      (Matrix3D) the transposed matrix.
+    """
+    return Matrix3D(
+      self.matrix[0],
+      self.matrix[1],
+      self.matrix[2],
+      self.matrix[3],
+      self.matrix[4],
+      self.matrix[5],
+      self.matrix[6],
+      self.matrix[7],
+      self.matrix[8],
     )
 
   def setAsIdentityMatrix(self):
