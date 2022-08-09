@@ -1,6 +1,8 @@
 from __future__ import annotations
 from copy import deepcopy
 
+from .vector3d import Vector3D
+
 class Matrix3D:
   """
   A class to represent a 3x3 matrix.
@@ -34,6 +36,8 @@ class Matrix3D:
       Returns the inverse of the matrix.
     transpose():
       Returns the transpose of the matrix.
+    transform():
+      Returns vector transformed by matrix.
     setAsIdentityMatrix():
       Sets matrix as an identity matrix.
   """
@@ -133,7 +137,7 @@ class Matrix3D:
       self.matrix[8] - m.matrix[8],
     )
 
-  def __mul__(self, k: int or float or Matrix3D) -> Matrix3D:
+  def __mul__(self, k: int or float or Matrix3D or Vector3D) -> Matrix3D or Vector3D:
     if isinstance(k, float) or isinstance(k, int):
       return Matrix3D(
         k * self.matrix[0],
@@ -159,6 +163,12 @@ class Matrix3D:
         self.matrix[2]*k.matrix[0] + self.matrix[5]*k.matrix[1] + self.matrix[8]*k.matrix[2],
         self.matrix[2]*k.matrix[3] + self.matrix[5]*k.matrix[4] + self.matrix[8]*k.matrix[5],
         self.matrix[2]*k.matrix[6] + self.matrix[5]*k.matrix[7] + self.matrix[8]*k.matrix[8],
+      )
+    elif isinstance(k, Vector3D):
+      return Vector3D(
+        self.matrix[0]*k.x+self.matrix[3]*k.y+self.matrix[6]*k.z,
+        self.matrix[1]*k.x+self.matrix[4]*k.y+self.matrix[7]*k.z,
+        self.matrix[2]*k.x+self.matrix[5]*k.y+self.matrix[8]*k.z,
       )
     else:
       raise TypeError(f"{type(k)} is not supported.")
@@ -375,6 +385,24 @@ class Matrix3D:
       self.matrix[6],
       self.matrix[7],
       self.matrix[8],
+    )
+
+  def transform(self, v: Vector3D) -> Vector3D:
+    """
+    Returns vector transformed by matrix.
+
+    Parameters
+    ----------
+      v: (Vector3D) the vector to transform
+
+    Returns
+    ----------
+      (Vector3D) the resulting vector
+    """
+    return Vector3D(
+      self.matrix[0]*v.x+self.matrix[3]*v.y+self.matrix[6]*v.z,
+      self.matrix[1]*v.x+self.matrix[4]*v.y+self.matrix[7]*v.z,
+      self.matrix[2]*v.x+self.matrix[5]*v.y+self.matrix[8]*v.z,
     )
 
   def setAsIdentityMatrix(self):

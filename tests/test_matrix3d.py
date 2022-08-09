@@ -1,4 +1,4 @@
-from Py4DMath import Matrix3D
+from Py4DMath import Matrix3D, Vector3D
 
 def test_Matrix3D_init_with_no_values():
   m = Matrix3D()
@@ -55,17 +55,21 @@ def test_Matrix3D_multiply_operator_scalar():
   assert km.matrix == [4, 4, 10, 6, 2, 6, 2, 8, 4]
 
 def test_Matrix3D_multiply_operator_matrix():
-  """
-  7  6 3     3 2 1   63 38 28 
-  4  2 5  *  5 3 3 = 42 24 15
-  10 6 4     4 2 1   76 46 32
-  """
-
   a = Matrix3D(7, 6, 3, 4, 2, 5, 10, 6, 4)
   b = Matrix3D(3, 2, 1, 5, 3, 3, 4, 2, 1)
   c = a * b
 
   assert c.matrix == [63, 42, 76, 38, 24, 46, 28, 15, 32]
+
+def test_Matrix3D_multiply_operator_vector():
+  m = Matrix3D(0, 0, 0, 0, 0 ,-1, 0, 1, 0)
+  v = Vector3D(0, 1, 0)
+
+  r = m * v
+
+  assert r.x == 0
+  assert r.y == 0
+  assert r.z == 1
 
 def test_Matrix3D_scalar_multiply():
   a = Matrix3D(2, 3, 1, 2, 1, 4, 5, 3, 2)
@@ -96,6 +100,16 @@ def test_transpose():
   m_trans = m.transpose()
 
   assert m_trans.matrix == [2, 1, 4, 3, 4, 1, 2, 1, 1]
+
+def test_transform():
+  m = Matrix3D(0, 0, 0, 0, 0 ,-1, 0, 1, 0)
+  v = Vector3D(0, 1, 0)
+
+  r = m.transform(v)
+
+  assert r.x == 0
+  assert r.y == 0
+  assert r.z == 1
 
 def test_set_as_identity_matrix():
   a = Matrix3D(7, 6, 3, 4, 2, 5, 10, 6, 4)
