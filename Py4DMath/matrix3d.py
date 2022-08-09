@@ -11,12 +11,17 @@ class Matrix3D:
     matrix: float[9]
       the array representing the matrix (column-major format)
 
+  Class Methods
+  ----------
+    identity():
+      Returns an identity matrix.
+
   Methods
   ----------
     copy():
-      Returns a copy of the matrix
+      Returns a copy of the matrix.
     show():
-      Prints visual representation of matrix
+      Prints visual representation of matrix.
     add():
       Returns the result of matrix addition.
     subtract():
@@ -25,15 +30,34 @@ class Matrix3D:
       Returns a vector multiplied by a scalar value.
     matrix_multiply():
       Returns a vector multiplied by another matrix.
-    setIdentity():
-      Sets matrix as an identity matrix.
     inverse():
       Returns the inverse of the matrix.
+    setAsIdentityMatrix():
+      Sets matrix as an identity matrix.
   """
+
+  @staticmethod
+  def identity(cls) -> Matrix3D:
+    """
+    Returns an identity matrix.
+
+        1 0 0
+    I = 0 1 0
+        0 0 1 
+
+    Parameters
+    ----------
+      None
+
+    Returns
+    ----------
+      None
+    """
+    return Matrix3D(1, 0, 0, 0, 1, 0, 0, 0, 1)
 
   def __init__(self, m0: float = 0, m3: float = 0, m6: float = 0, m1: float = 0, m4: float = 0, m7: float = 0, m2: float = 0, m5: float = 0, m8: float = 0):
     """
-    Constructs all necessary attributes for the Matrix3D object
+    Constructs all necessary attributes for the Matrix3D object.
 
       0  3  6
       1  4  7   -> [0 1 2 3 4 5 6 7 8]
@@ -271,27 +295,6 @@ class Matrix3D:
       self.matrix[2]*k.matrix[6] + self.matrix[5]*k.matrix[7] + self.matrix[8]*k.matrix[8],
     )
 
-  def setIdentity(self):
-    """
-    Sets matrix as an identity matrix.
-
-        1 0 0
-    I = 0 1 0
-        0 0 1 
-
-    Parameters
-    ----------
-      None
-
-    Returns
-    ----------
-      None
-    """
-    for i in range(9):
-      self.matrix[i] = 0.0
-
-    self.matrix[0] = self.matrix[4] = self.matrix[8] = 1.0
-
   def inverse(self) -> Matrix3D or None:
     """
     Returns the inverse of the matrix.
@@ -343,3 +346,24 @@ class Matrix3D:
       det_inv*H,
       det_inv*I,
     )
+
+  def setAsIdentityMatrix(self):
+    """
+    Sets matrix as an identity matrix.
+
+        1 0 0
+    I = 0 1 0
+        0 0 1 
+
+    Parameters
+    ----------
+      None
+
+    Returns
+    ----------
+      None
+    """
+    for i in range(9):
+      self.matrix[i] = 0.0
+
+    self.matrix[0] = self.matrix[4] = self.matrix[8] = 1.0

@@ -80,13 +80,6 @@ def test_Matrix3D_matrix_multiply():
 
   assert c.matrix == [63, 42, 76, 38, 24, 46, 28, 15, 32]
 
-def test_set_identity():
-  a = Matrix3D(7, 6, 3, 4, 2, 5, 10, 6, 4)
-  a.setIdentity()
-
-  assert a.matrix == [1, 0 ,0, 0, 1, 0, 0, 0, 1]
-
-
 def test_inverse():
   """
       2 1 4           -1/5  -1/5  1
@@ -97,3 +90,9 @@ def test_inverse():
   m_inv = m.inverse()
 
   assert m_inv.matrix == [-1/5, 1/15, 1/3, -1/5, 2/5, 0, 1, -2/3, -1/3]
+
+def test_set_as_identity_matrix():
+  a = Matrix3D(7, 6, 3, 4, 2, 5, 10, 6, 4)
+  a.setAsIdentityMatrix()
+
+  assert a.matrix == [1, 0 ,0, 0, 1, 0, 0, 0, 1]
