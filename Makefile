@@ -17,7 +17,12 @@ save-deps:
 
 .PHONY: build
 build:
+	@python setup.py sdist
 	@python setup.py bdist_wheel
+
+.PHONY: upload
+upload: 
+	@twine upload dist/*
 
 .PHONY: test
 test:

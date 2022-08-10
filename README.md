@@ -7,7 +7,7 @@ It consists of the following classes:
 2) Matrix
 3) Quaternions
 
-### API Documentation
+## API Documentation
 
 TBD
 
@@ -37,7 +37,7 @@ source venv/bin/activate
 make install-deps
 ```
 
-## Version Changes
+### Version Changes
 
 ***NOTE***: When making updates to the source code, make sure to bump versions.
 
@@ -45,8 +45,18 @@ make install-deps
 
 2) Update the CHANGES.txt with the new version number and detail what changed.
 
-### Contact 
+### Deployment
+
+This package is available on PyPi.
+
+To deploy to PyPi,
+
+1) Build the `dist` package using `make build`
+
+2) Upload to PyPi using `make upload`
+
+## Contact 
 Nicholas Chumney - [nicholas.chumney@outlook.com](nicholas.chumney@outlook.com) 
 
-### Acknowledgements
+## Acknowledgements
 - [3D Math Engine Project](https://www.haroldserrano.com/math-engine-project/)
