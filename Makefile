@@ -21,7 +21,7 @@ build:
 	@python setup.py bdist_wheel
 
 .PHONY: upload
-upload: 
+upload: build
 	@twine upload dist/*
 
 .PHONY: test

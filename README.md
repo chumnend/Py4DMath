@@ -7,6 +7,11 @@ It consists of the following classes:
 2) Matrix
 3) Quaternions
 
+## Table of Contents
+- [API Documentation](#api-documentation)
+- [Developer's Guide](#developers-guide)
+- [Contact](#contact)
+
 ## API Documentation
 
 TBD
