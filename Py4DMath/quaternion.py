@@ -1,5 +1,6 @@
 from __future__ import annotations
 from copy import deepcopy
+from math import sqrt
 
 from .vector3d import Vector3D
 
@@ -31,7 +32,8 @@ class Quaternion:
       Returns the result of a quaternion multiplied by a scalar value.
     quaternion_multiply():
       Returns the result of quaternion multiplication.
-
+    norm():
+      Returns the norm of the quaternion.
   """
   def __init__(self, s: float, v: Vector3D):
     self.s = s
@@ -119,7 +121,7 @@ class Quaternion:
 
   def quaternion_multiply(self, q: Quaternion) -> Quaternion:
     """
-    Returns the result og quaternion multiplication.
+    Returns the result of quaternion multiplication.
 
     qa*qb = (sa*sb - va dot vb) + (sa*vb + sb*va + va cross vb)
 
@@ -136,3 +138,11 @@ class Quaternion:
       self.s*q.s - self.v.dot(q.v), 
       q.v*self.s + self.v*q.s + self.v.cross(q.v)
     )
+
+  def norm(self) -> float:
+    """
+    Returns the norm of the quaternion.
+
+    |q| = sqrt(s^2 + v^2)
+    """
+    return sqrt(self.s*self.s + self.v.x * self.v.x + self.v.y * self.v.y + self.v.z * self.v.z)

@@ -1,4 +1,5 @@
 from Py4DMath import Quaternion, Vector3D
+from math import sqrt
 
 def test_Quaternion_init():
   v = Vector3D(1, 0, 0)
@@ -96,3 +97,9 @@ def test_Quaternion_quaternion_multiply():
   assert c.v.x == 100
   assert c.v.y == 0
   assert c.v.z == 0
+
+def test_Quaternion_norm():
+  q = Quaternion(1, Vector3D(2, 3, 4))
+  n = q.norm()
+
+  assert n == sqrt(30)
