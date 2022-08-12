@@ -79,7 +79,7 @@ class Vector3D:
       self.z - v.z,
     )
 
-  def __mul__(self, k: float) -> Vector3D:
+  def __mul__(self, k: float or int) -> Vector3D:
     return Vector3D(
       k * self.x,
       k * self.y,
@@ -160,7 +160,7 @@ class Vector3D:
       self.z - v.z,
     )
 
-  def multiply(self, k: float) -> Vector3D:
+  def multiply(self, k: float or int) -> Vector3D:
     """
     Returns a vector multiplied by a scalar value.
 

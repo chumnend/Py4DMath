@@ -27,6 +27,8 @@ class Quaternion:
       Returns the result of quaternion addition.
     subtract():
       Returns the result of quaternion subtraction.
+    multiply():
+      Returns the result of quaternion multiplication.
   """
   def __init__(self, s: float, v: Vector3D):
     self.s = s
@@ -37,6 +39,12 @@ class Quaternion:
 
   def __sub__(self, q: Quaternion) -> Quaternion:
     return Quaternion(self.s - q.s, self.v - q.v)
+
+  def __mul__(self, q: Quaternion) -> Quaternion:
+    return Quaternion(
+      self.s*q.s - self.v.dot(q.v), 
+      q.v*self.s + self.v*q.s + self.v.cross(q.v)
+    )
 
   def copy(self) -> Quaternion:
     """
@@ -83,3 +91,23 @@ class Quaternion:
       (Quaternion) the resulting quaternion
     """
     return Quaternion(self.s - q.s, self.v - q.v)
+
+  def multiply(self, q: Quaternion) -> Quaternion:
+    """
+    Returns the result og quaternion multiplication.
+
+    qa*qb = (sa*sb - va dot vb) + (sa*vb + sb*va + va cross vb)
+
+    Parameters
+    ----------
+      q: Quaternion
+        the quaternion to be multipied
+
+    Returns
+    ----------
+      (Quaternion) the resulting quaternion
+    """
+    return Quaternion(
+      self.s*q.s - self.v.dot(q.v), 
+      q.v*self.s + self.v*q.s + self.v.cross(q.v)
+    )

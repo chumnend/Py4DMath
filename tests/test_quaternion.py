@@ -22,7 +22,6 @@ def test_Quaternion_copy():
 def test_Quaternion_add_operator():
   a = Quaternion(0.5, Vector3D(2, 3, -4))
   b = Quaternion(0.1, Vector3D(4, 5, 6))
-
   c = a + b
 
   assert c.s == 0.6
@@ -30,10 +29,9 @@ def test_Quaternion_add_operator():
   assert c.v.y == 8
   assert c.v.z == 2
 
-def test_Quaternion_add_method():
+def test_Quaternion_add():
   a = Quaternion(0.5, Vector3D(2, 3, -4))
   b = Quaternion(0.1, Vector3D(4, 5, 6))
-
   c = a.add(b)
 
   assert c.s == 0.6
@@ -41,10 +39,9 @@ def test_Quaternion_add_method():
   assert c.v.y == 8
   assert c.v.z == 2
 
-def test_Quaternion_subtract_operator():
+def test_Quaternion_sub_operator():
   a = Quaternion(0.5, Vector3D(2, 3, -4))
   b = Quaternion(0.1, Vector3D(4, 5, 6))
-
   c = a - b
 
   assert c.s == 0.4
@@ -52,13 +49,32 @@ def test_Quaternion_subtract_operator():
   assert c.v.y == -2
   assert c.v.z == -10
 
-def test_Quaternion_subtract_method():
+def test_Quaternion_subtract():
   a = Quaternion(0.5, Vector3D(2, 3, -4))
   b = Quaternion(0.1, Vector3D(4, 5, 6))
-
   c = a.subtract(b)
 
   assert c.s == 0.4
   assert c.v.x == -2
   assert c.v.y == -2
   assert c.v.z == -10
+
+def test_Quaternion_mul_operator():
+  a = Quaternion(90, Vector3D(1, 0 , 0))
+  b = Quaternion(10, Vector3D(1, 0 ,0))
+  c = a * b
+
+  assert c.s == 899
+  assert c.v.x == 100
+  assert c.v.y == 0
+  assert c.v.z == 0
+
+def test_Quaternion_multiply():
+  a = Quaternion(90, Vector3D(1, 0 , 0))
+  b = Quaternion(10, Vector3D(1, 0 ,0))
+  c = a.multiply(b)
+
+  assert c.s == 899
+  assert c.v.x == 100
+  assert c.v.y == 0
+  assert c.v.z == 0
