@@ -18,3 +18,47 @@ def test_Quaternion_copy():
   assert q_copy.v.x == 1
   assert q_copy.v.y == 0
   assert q_copy.v.z == 0
+
+def test_Quaternion_add_operator():
+  a = Quaternion(0.5, Vector3D(2, 3, -4))
+  b = Quaternion(0.1, Vector3D(4, 5, 6))
+
+  c = a + b
+
+  assert c.s == 0.6
+  assert c.v.x == 6
+  assert c.v.y == 8
+  assert c.v.z == 2
+
+def test_Quaternion_add_method():
+  a = Quaternion(0.5, Vector3D(2, 3, -4))
+  b = Quaternion(0.1, Vector3D(4, 5, 6))
+
+  c = a.add(b)
+
+  assert c.s == 0.6
+  assert c.v.x == 6
+  assert c.v.y == 8
+  assert c.v.z == 2
+
+def test_Quaternion_subtract_operator():
+  a = Quaternion(0.5, Vector3D(2, 3, -4))
+  b = Quaternion(0.1, Vector3D(4, 5, 6))
+
+  c = a - b
+
+  assert c.s == 0.4
+  assert c.v.x == -2
+  assert c.v.y == -2
+  assert c.v.z == -10
+
+def test_Quaternion_subtract_method():
+  a = Quaternion(0.5, Vector3D(2, 3, -4))
+  b = Quaternion(0.1, Vector3D(4, 5, 6))
+
+  c = a.subtract(b)
+
+  assert c.s == 0.4
+  assert c.v.x == -2
+  assert c.v.y == -2
+  assert c.v.z == -10
