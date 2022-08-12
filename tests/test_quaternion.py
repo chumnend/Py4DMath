@@ -61,18 +61,36 @@ def test_Quaternion_subtract():
 
 def test_Quaternion_mul_operator():
   a = Quaternion(90, Vector3D(1, 0 , 0))
-  b = Quaternion(10, Vector3D(1, 0 ,0))
-  c = a * b
+  b = a * 2
 
-  assert c.s == 899
-  assert c.v.x == 100
-  assert c.v.y == 0
-  assert c.v.z == 0
+  assert b.s == 180
+  assert b.v.x == 2
+  assert b.v.y == 0
+  assert b.v.z == 0
 
-def test_Quaternion_multiply():
+  d = Quaternion(90, Vector3D(1, 0 , 0))
+  e = Quaternion(10, Vector3D(1, 0 ,0))
+  f = d * e
+
+  assert f.s == 899
+  assert f.v.x == 100
+  assert f.v.y == 0
+  assert f.v.z == 0
+
+def test_Quaternion_scalar_multiply():
+  a = Quaternion(90, Vector3D(1, 0 , 0))
+  b = a.scalar_multiply(2)
+
+  assert b.s == 180
+  assert b.v.x == 2
+  assert b.v.y == 0
+  assert b.v.z == 0
+
+
+def test_Quaternion_quaternion_multiply():
   a = Quaternion(90, Vector3D(1, 0 , 0))
   b = Quaternion(10, Vector3D(1, 0 ,0))
-  c = a.multiply(b)
+  c = a.quaternion_multiply(b)
 
   assert c.s == 899
   assert c.v.x == 100

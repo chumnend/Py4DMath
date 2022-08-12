@@ -27,8 +27,11 @@ class Quaternion:
       Returns the result of quaternion addition.
     subtract():
       Returns the result of quaternion subtraction.
-    multiply():
+    scalar_multiply():
+      Returns the result of a quaternion multiplied by a scalar value.
+    quaternion_multiply():
       Returns the result of quaternion multiplication.
+
   """
   def __init__(self, s: float, v: Vector3D):
     self.s = s
@@ -40,11 +43,16 @@ class Quaternion:
   def __sub__(self, q: Quaternion) -> Quaternion:
     return Quaternion(self.s - q.s, self.v - q.v)
 
-  def __mul__(self, q: Quaternion) -> Quaternion:
-    return Quaternion(
-      self.s*q.s - self.v.dot(q.v), 
-      q.v*self.s + self.v*q.s + self.v.cross(q.v)
-    )
+  def __mul__(self, val: int or float or Quaternion) -> Quaternion:
+    if isinstance(val, int) or isinstance(val, float):
+      return Quaternion(self.s*val, self.v*val)
+    elif isinstance(val, Quaternion):
+      return Quaternion(
+        self.s*val.s - self.v.dot(val.v), 
+        val.v*self.s + self.v*val.s + self.v.cross(val.v)
+      )
+    else:
+      raise TypeError(f"{type(k)} is not supported.")
 
   def copy(self) -> Quaternion:
     """
@@ -92,7 +100,24 @@ class Quaternion:
     """
     return Quaternion(self.s - q.s, self.v - q.v)
 
-  def multiply(self, q: Quaternion) -> Quaternion:
+  def scalar_multiply(self, s: int or float) -> Quaternion:
+    """
+    Returns a quaternion multiplied by a scalar value.
+
+    q * s = (qs * s) + (qv * s)
+
+    Parameters
+    ----------
+      s: int or float
+        scaler value to multply by
+
+    Returns
+    ----------
+      (Quaternion) the resulting quaternion
+    """
+    return Quaternion(self.s*s, self.v*s)
+
+  def quaternion_multiply(self, q: Quaternion) -> Quaternion:
     """
     Returns the result og quaternion multiplication.
 
