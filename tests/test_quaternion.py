@@ -103,3 +103,12 @@ def test_Quaternion_norm():
   n = q.norm()
 
   assert n == sqrt(30)
+
+def test_Quaternion_normalize():
+  q = Quaternion(1, Vector3D(2, 3, 4))
+  n = q.normalize()
+
+  assert n.s == 1 / sqrt(30)
+  assert n.v.x == 2 / sqrt(30)
+  assert n.v.y == 3 / sqrt(30)
+  assert n.v.z == 4 / sqrt(30)

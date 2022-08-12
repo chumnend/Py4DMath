@@ -34,6 +34,8 @@ class Quaternion:
       Returns the result of quaternion multiplication.
     norm():
       Returns the norm of the quaternion.
+    normalize():
+      Returns the normalized quaternion (unit norm).
   """
   def __init__(self, s: float, v: Vector3D):
     self.s = s
@@ -144,5 +146,33 @@ class Quaternion:
     Returns the norm of the quaternion.
 
     |q| = sqrt(s^2 + v^2)
+
+    Parameters
+    ----------
+      None
+
+    Returns
+    ----------
+      (Quaternion) the norm of the Quaternion
     """
     return sqrt(self.s*self.s + self.v.x * self.v.x + self.v.y * self.v.y + self.v.z * self.v.z)
+
+  def normalize(self) -> Quaternion:
+    """
+    Returns the normalized quaternion (unit norm).
+
+    qu = q / sqrt(s^2 + v^2)
+
+    Parameters
+    ----------
+      None
+
+    Returns
+    ----------
+      (Quaternion) the normalized quaternion
+    """
+
+    if self.norm() != 0:
+      return Quaternion(self.s * 1/self.norm(), self.v * 1/self.norm())
+    else:
+      raise ValueError('Unable to normalize as norm value is zero')
