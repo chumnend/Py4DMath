@@ -115,9 +115,18 @@ def test_Quaternion_normalize():
 
 def test_Quaternion_conjugate():
   q = Quaternion(90, Vector3D(1, 0, 0))
-  q_inv = q.conjugate()
+  q_conj = q.conjugate()
 
-  assert q_inv.s == 90
-  assert q_inv.v.x == -1
+  assert q_conj.s == 90
+  assert q_conj.v.x == -1
+  assert q_conj.v.y == 0
+  assert q_conj.v.z == 0
+
+def test_Quaternion_inverse():
+  q = Quaternion(60, Vector3D(1, 0, 0))
+  q_inv = q.inverse()
+
+  assert q_inv.s == 0.016662038322688144 
+  assert q_inv.v.x == -0.00027770063871146905
   assert q_inv.v.y == 0
   assert q_inv.v.z == 0

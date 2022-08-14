@@ -37,11 +37,16 @@ class Quaternion:
     normalize():
       Returns the normalized quaternion (unit norm).
     conjugate():
+      Returns the conjugate of the quaternion.
+    inverse():
       Returns the inverse of the quaternion.
   """
   def __init__(self, s: float, v: Vector3D):
     self.s = s
     self.v = v
+
+  def __repr__(self) -> str:
+    return f"{self.__class__.__name__} (quaternion={self.s} + {self.v.x}i + {self.v.y}j + {self.v.z}k)"
 
   def __add__(self, q: Quaternion) -> Quaternion:
     return Quaternion(self.s + q.s, self.v + q.v)
@@ -180,8 +185,21 @@ class Quaternion:
 
   def conjugate(self) -> Quaternion:
     """
-    Returns the inverse of the quaternion.
+    Returns the conjugate of the quaternion.
 
-    q^-1 = [s, -v]
+    q_conj = [s, -v]
     """
     return Quaternion(self.s, self.v * -1)
+
+  def inverse(self) -> Quaternion:
+    """
+    Returns the inverse of the quaternion.
+
+    q_inv = q_conj / abs(q)^2
+    """
+    q_conj = self.conjugate()
+    abs_val = self.norm()
+
+    deno = 1 / (abs_val * abs_val)
+
+    return Quaternion(q_conj.s * deno, q_conj.v * deno)
