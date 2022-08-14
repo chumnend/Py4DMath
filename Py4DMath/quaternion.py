@@ -188,6 +188,14 @@ class Quaternion:
     Returns the conjugate of the quaternion.
 
     q_conj = [s, -v]
+
+        Parameters
+    ----------
+      None
+
+    Returns
+    ----------
+      (Quaternion) the conjugated quaternion
     """
     return Quaternion(self.s, self.v * -1)
 
@@ -196,6 +204,14 @@ class Quaternion:
     Returns the inverse of the quaternion.
 
     q_inv = q_conj / abs(q)^2
+
+        Parameters
+    ----------
+      None
+
+    Returns
+    ----------
+      (Quaternion) the inversed quaternion
     """
     q_conj = self.conjugate()
     abs_val = self.norm()
