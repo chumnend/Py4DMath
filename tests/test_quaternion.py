@@ -112,3 +112,12 @@ def test_Quaternion_normalize():
   assert n.v.x == 2 / sqrt(30)
   assert n.v.y == 3 / sqrt(30)
   assert n.v.z == 4 / sqrt(30)
+
+def test_Quaternion_conjugate():
+  q = Quaternion(90, Vector3D(1, 0, 0))
+  q_inv = q.conjugate()
+
+  assert q_inv.s == 90
+  assert q_inv.v.x == -1
+  assert q_inv.v.y == 0
+  assert q_inv.v.z == 0

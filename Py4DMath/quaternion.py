@@ -36,6 +36,8 @@ class Quaternion:
       Returns the norm of the quaternion.
     normalize():
       Returns the normalized quaternion (unit norm).
+    conjugate():
+      Returns the inverse of the quaternion.
   """
   def __init__(self, s: float, v: Vector3D):
     self.s = s
@@ -171,8 +173,15 @@ class Quaternion:
     ----------
       (Quaternion) the normalized quaternion
     """
-
     if self.norm() != 0:
       return Quaternion(self.s * 1/self.norm(), self.v * 1/self.norm())
     else:
       raise ValueError('Unable to normalize as norm value is zero')
+
+  def conjugate(self) -> Quaternion:
+    """
+    Returns the inverse of the quaternion.
+
+    q^-1 = [s, -v]
+    """
+    return Quaternion(self.s, self.v * -1)
