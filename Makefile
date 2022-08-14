@@ -16,7 +16,7 @@ save-deps:
 	@echo "Dependencies saved."
 
 .PHONY: build
-build:
+build: clean
 	@python setup.py sdist
 	@python setup.py bdist_wheel
 
@@ -27,3 +27,7 @@ upload: build
 .PHONY: test
 test:
 	@python setup.py pytest
+
+.PHONY: clean
+clean:
+	@rm -rf build dist

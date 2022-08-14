@@ -8,13 +8,129 @@ It consists of the following classes:
 3) Quaternions
 
 ## Table of Contents
-- [API Documentation](#api-documentation)
+- [Documentation](#documentation)
 - [Developer's Guide](#developers-guide)
 - [Contact](#contact)
 
-## API Documentation
+## Documentation
 
-TBD
+### Vector3D
+
+```
+A class to represent a vector in 3D space.
+
+...
+Attributes
+----------
+  x: float
+    the x position of the vector
+  y: float
+    the y position of the vector
+  z: float
+    the z position of the vector
+
+Methods
+----------
+  copy():
+    Returns a copy of the vector.
+  show():
+    Prints visual representation of the vector.
+  add():
+    Returns the result of vector addition.
+  subtract():
+    Returns the result of vector subtraction.
+  multiply():
+    Returns a vector multiplied by a scalar value.
+  divide():
+    Returns a vector divided by a scalar value.
+  dot():
+    Returns the dot product between two vectors.
+  cross():
+    Returns the cross product between two vectors.
+  magnitude():
+    Returns the magnitude of the vector.
+  normalize():
+    Returns the normalized unit vector.
+```
+
+### Matrix3D
+
+```
+A class to represent a 3x3 matrix.
+
+...
+Attributes
+----------
+  matrix: float[9]
+    the array representing the matrix (column-major format)
+
+Class Methods
+----------
+  identity():
+    Returns an identity matrix.
+
+Methods
+----------
+  copy():
+    Returns a copy of the matrix.
+  show():
+    Prints visual representation of matrix.
+  add():
+    Returns the result of matrix addition.
+  subtract():
+    Returns the result of matrix subtraction.
+  scalar_multiply():
+    Returns a vector multiplied by a scalar value.
+  matrix_multiply():
+    Returns a vector multiplied by another matrix.
+  inverse():
+    Returns the inverse of the matrix.
+  transpose():
+    Returns the transpose of the matrix.
+  transform():
+    Returns vector transformed by matrix.
+  setAsIdentityMatrix():
+    Sets matrix as an identity matrix.
+```
+
+### Quaternion
+
+```
+A class representing a Quaternion.
+
+q = s + v
+
+where s is a scalar number, v is a vector representing an axis
+
+...
+Attributes
+----------
+  s: float
+    the scalar number
+  v: Vector3D
+    the vector representing an axis
+
+Methods
+----------
+  copy():
+    Returns a copy of the quaternion.
+  add():
+    Returns the result of quaternion addition.
+  subtract():
+    Returns the result of quaternion subtraction.
+  scalar_multiply():
+    Returns the result of a quaternion multiplied by a scalar value.
+  quaternion_multiply():
+    Returns the result of quaternion multiplication.
+  norm():
+    Returns the norm of the quaternion.
+  normalize():
+    Returns the normalized quaternion (unit norm).
+  conjugate():
+    Returns the conjugate of the quaternion.
+  inverse():
+    Returns the inverse of the quaternion.
+```
 
 ## Developer's Guide
 
