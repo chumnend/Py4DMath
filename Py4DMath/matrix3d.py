@@ -137,41 +137,41 @@ class Matrix3D:
       self.matrix[8] - m.matrix[8],
     )
 
-  def __mul__(self, k: int or float or Matrix3D or Vector3D) -> Matrix3D or Vector3D:
-    if isinstance(k, float) or isinstance(k, int):
+  def __mul__(self, val: int or float or Matrix3D or Vector3D) -> Matrix3D or Vector3D:
+    if isinstance(val, float) or isinstance(val, int):
       return Matrix3D(
-        k * self.matrix[0],
-        k * self.matrix[3],
-        k * self.matrix[6],
-        k * self.matrix[1],
-        k * self.matrix[4],
-        k * self.matrix[7],
-        k * self.matrix[2],
-        k * self.matrix[5],
-        k * self.matrix[8],
+        val * self.matrix[0],
+        val * self.matrix[3],
+        val * self.matrix[6],
+        val * self.matrix[1],
+        val * self.matrix[4],
+        val * self.matrix[7],
+        val * self.matrix[2],
+        val * self.matrix[5],
+        val * self.matrix[8],
       )
-    elif isinstance(k, Matrix3D):
+    elif isinstance(val, Matrix3D):
       return Matrix3D(
-        self.matrix[0]*k.matrix[0] + self.matrix[3]*k.matrix[1] + self.matrix[6]*k.matrix[2],
-        self.matrix[0]*k.matrix[3] + self.matrix[3]*k.matrix[4] + self.matrix[6]*k.matrix[5],
-        self.matrix[0]*k.matrix[6] + self.matrix[3]*k.matrix[7] + self.matrix[6]*k.matrix[8],
+        self.matrix[0]*val.matrix[0] + self.matrix[3]*val.matrix[1] + self.matrix[6]*val.matrix[2],
+        self.matrix[0]*val.matrix[3] + self.matrix[3]*val.matrix[4] + self.matrix[6]*val.matrix[5],
+        self.matrix[0]*val.matrix[6] + self.matrix[3]*val.matrix[7] + self.matrix[6]*val.matrix[8],
 
-        self.matrix[1]*k.matrix[0] + self.matrix[4]*k.matrix[1] + self.matrix[7]*k.matrix[2],
-        self.matrix[1]*k.matrix[3] + self.matrix[4]*k.matrix[4] + self.matrix[7]*k.matrix[5],
-        self.matrix[1]*k.matrix[6] + self.matrix[4]*k.matrix[7] + self.matrix[7]*k.matrix[8],
+        self.matrix[1]*val.matrix[0] + self.matrix[4]*val.matrix[1] + self.matrix[7]*val.matrix[2],
+        self.matrix[1]*val.matrix[3] + self.matrix[4]*val.matrix[4] + self.matrix[7]*val.matrix[5],
+        self.matrix[1]*val.matrix[6] + self.matrix[4]*val.matrix[7] + self.matrix[7]*val.matrix[8],
 
-        self.matrix[2]*k.matrix[0] + self.matrix[5]*k.matrix[1] + self.matrix[8]*k.matrix[2],
-        self.matrix[2]*k.matrix[3] + self.matrix[5]*k.matrix[4] + self.matrix[8]*k.matrix[5],
-        self.matrix[2]*k.matrix[6] + self.matrix[5]*k.matrix[7] + self.matrix[8]*k.matrix[8],
+        self.matrix[2]*val.matrix[0] + self.matrix[5]*val.matrix[1] + self.matrix[8]*val.matrix[2],
+        self.matrix[2]*val.matrix[3] + self.matrix[5]*val.matrix[4] + self.matrix[8]*val.matrix[5],
+        self.matrix[2]*val.matrix[6] + self.matrix[5]*val.matrix[7] + self.matrix[8]*val.matrix[8],
       )
-    elif isinstance(k, Vector3D):
+    elif isinstance(val, Vector3D):
       return Vector3D(
-        self.matrix[0]*k.x+self.matrix[3]*k.y+self.matrix[6]*k.z,
-        self.matrix[1]*k.x+self.matrix[4]*k.y+self.matrix[7]*k.z,
-        self.matrix[2]*k.x+self.matrix[5]*k.y+self.matrix[8]*k.z,
+        self.matrix[0]*val.x+self.matrix[3]*val.y+self.matrix[6]*val.z,
+        self.matrix[1]*val.x+self.matrix[4]*val.y+self.matrix[7]*val.z,
+        self.matrix[2]*val.x+self.matrix[5]*val.y+self.matrix[8]*val.z,
       )
     else:
-      raise TypeError(f"{type(k)} is not supported.")
+      raise TypeError(f"{type(val)} is not supported.")
 
   def copy(self) -> Matrix3D:
     """
@@ -254,13 +254,13 @@ class Matrix3D:
       self.matrix[8] - m.matrix[8],
     )
 
-  def scalar_multiply(self, k: float) -> Matrix3D:
+  def scalar_multiply(self, k: int or float) -> Matrix3D:
     """
     Returns a matrix multiplied by a scalar value.
 
     Parameters
     ----------
-      k: float
+      k: int or float
         scaler value to multply by
 
     Returns
