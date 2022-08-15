@@ -59,7 +59,6 @@ class Vector3D:
     ----------
       None
     """
-
     self.x = x
     self.y = y
     self.z = z

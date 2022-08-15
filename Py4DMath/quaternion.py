@@ -72,6 +72,22 @@ class Quaternion:
     return Quaternion(s, v)
 
   def __init__(self, s: float, v: Vector3D):
+    """
+    Constructs all necessary attributes for the Quaternion object
+
+    q = s + v
+
+    Parameters
+    ----------
+      s: float
+        the scaler component of the quaternion
+      v: Vector3D
+        the vector component of the quaternion
+      
+    Returns
+    ----------
+      None
+    """
     self.s = s
     self.v = v
 
