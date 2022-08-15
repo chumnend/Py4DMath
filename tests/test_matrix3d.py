@@ -10,10 +10,15 @@ def test_Matrix3D_init_with_no_values():
 
   assert m.matrix == [0]*9
 
-def test_Matrix3D_init_with_values():
-  m = Matrix3D(0, 3, 6, 1, 4, 7, 2, 5, 8)
+def test_Matrix3D_init_with_values_column_major():
+  m = Matrix3D(0, 3, 6, 1, 4, 7, 2, 5, 8, major="column")
 
   assert m.matrix == [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
+def test_Matrix3D_init_with_values_row_major():
+  m = Matrix3D(0, 3, 6, 1, 4, 7, 2, 5, 8, major="row")
+
+  assert m.matrix == [0, 3, 6, 1, 4, 7, 2, 5, 8]
 
 def test_Matrix3D_copy():
   m1 = Matrix3D(0, 3, 6, 1, 4, 7, 2, 5, 8)
