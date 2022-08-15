@@ -121,3 +121,13 @@ def test_Vector3D_normalize():
   assert n.x == (1 / sqrt(14)) * 2
   assert n.y == (1 / sqrt(14)) * 3
   assert n.z == (1 / sqrt(14)) * 1
+
+def test_Vector3D_rotate():
+  v = Vector3D(0, 1, 0)
+  x_axis = Vector3D(1, 0, 0)
+
+  res = v.rotate(90, x_axis)
+
+  assert round(res.x, 6) == 0
+  assert round(res.y, 6) == 0
+  assert round(res.z, 6) == 1
