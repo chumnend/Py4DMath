@@ -59,52 +59,87 @@ class Matrix3D:
     """
     return Matrix3D(1, 0, 0, 0, 1, 0, 0, 0, 1)
 
-  def __init__(self, m0: float = 0, m3: float = 0, m6: float = 0, m1: float = 0, m4: float = 0, m7: float = 0, m2: float = 0, m5: float = 0, m8: float = 0):
+  def __init__(
+      self, 
+      m0: float = 0, 
+      m3: float = 0, 
+      m6: float = 0, 
+      m1: float = 0, 
+      m4: float = 0, 
+      m7: float = 0, 
+      m2: float = 0, 
+      m5: float = 0, 
+      m8: float = 0,
+      *,
+      major = "column"
+    ):
     """
     Constructs all necessary attributes for the Matrix3D object.
+
+    "column" major
 
       0  3  6
       1  4  7   -> [0 1 2 3 4 5 6 7 8]
       2  5  8
 
+    "row" major
+
+      0  1  2
+      3  4  5   -> [0 3 6 1 4 7 2 5 8]
+      6  7  8
+
     Parameters
     ----------
       m0: float
-        the value at x=0, y=0
+        the value at (column major: x=0, y=0) (row major: x=0, y=0)
       m3: float
-        the value at x=0, y=1
+        the value at (column major: x=1, y=0) (row major: x=0, y=1)
       m6: float
-        the value at x=0, y=2
+        the value at (column major: x=2, y=0) (row major: x=0, y=2)
       m1: float
-        the value at x=1, y=0
+        the value at (column major: x=0, y=1) (row major: x=1, y=0)
       m4: float
-        the value at x=1, y=1
+        the value at (column major: x=1, y=1) (row major: x=1, y=1)
       m7: float
-        the value at x=1, y=2
+        the value at (column major: x=2, y=1) (row major: x=1, y=2)
       m2: float
-        the value at x=2, y=0
+        the value at (column major: x=0, y=2) (row major: x=2, y=0)
       m5: float
-        the value at x=2, y=1
+        the value at (column major: x=1, y=2) (row major: x=2, y=1)
       m8: float
-        the value at x=2, y=2
-
+        the value at (column major: x=2, y=2) (row major: x=2, y=2)
+      major: string
+        assigns matrix column by "column" or "row" major. This sets
+        whether the constructor builds the matrix column by column or
+        row by row. Defaults to "column".
     Returns
     ----------
       None
     """
     self.matrix = [0.0]*9
 
-    self.matrix[0] = m0
-    self.matrix[3] = m3
-    self.matrix[6] = m6
-
-    self.matrix[1] = m1
-    self.matrix[4] = m4
-    self.matrix[7] = m7
-
-    self.matrix[2] = m2
-    self.matrix[5] = m5
-    self.matrix[8] = m8
+    if major == "column":
+      self.matrix[0] = m0
+      self.matrix[3] = m3
+      self.matrix[6] = m6
+      self.matrix[1] = m1
+      self.matrix[4] = m4
+      self.matrix[7] = m7
+      self.matrix[2] = m2
+      self.matrix[5] = m5
+      self.matrix[8] = m8
+    elif major == "row":
+      self.matrix[0] = m0
+      self.matrix[1] = m3
+      self.matrix[2] = m6
+      self.matrix[3] = m1
+      self.matrix[4] = m4
+      self.matrix[5] = m7
+      self.matrix[6] = m2
+      self.matrix[7] = m5
+      self.matrix[8] = m8
+    else:
+      raise ValueError(f'{major} is not recognized. Accepts "column" or "row"')
 
   def __repr__(self) -> str:
     return f"{self.__class__.__name__} (matrix={self.matrix})"
