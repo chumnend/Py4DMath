@@ -31,3 +31,7 @@ test:
 .PHONY: clean
 clean:
 	@rm -rf build dist
+
+.PHONY: format
+format:
+	@python -m black Py4DMath
