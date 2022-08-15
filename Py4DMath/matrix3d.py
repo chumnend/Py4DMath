@@ -13,9 +13,9 @@ class Matrix3D:
     matrix: float[9]
       the array representing the matrix (column-major format)
 
-  Class Methods
+  Static/Class Methods
   ----------
-    identity():
+    getIdentityMatrix():
       Returns an identity matrix.
 
   Methods
@@ -38,12 +38,10 @@ class Matrix3D:
       Returns the transpose of the matrix.
     transform():
       Returns vector transformed by matrix.
-    setAsIdentityMatrix():
-      Sets matrix as an identity matrix.
   """
 
   @staticmethod
-  def identity(cls) -> Matrix3D:
+  def getIdentityMatrix() -> Matrix3D:
     """
     Returns an identity matrix.
 
@@ -404,24 +402,3 @@ class Matrix3D:
       self.matrix[1]*v.x+self.matrix[4]*v.y+self.matrix[7]*v.z,
       self.matrix[2]*v.x+self.matrix[5]*v.y+self.matrix[8]*v.z,
     )
-
-  def setAsIdentityMatrix(self):
-    """
-    Sets matrix as an identity matrix.
-
-        1 0 0
-    I = 0 1 0
-        0 0 1 
-
-    Parameters
-    ----------
-      None
-
-    Returns
-    ----------
-      None
-    """
-    for i in range(9):
-      self.matrix[i] = 0.0
-
-    self.matrix[0] = self.matrix[4] = self.matrix[8] = 1.0

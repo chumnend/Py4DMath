@@ -1,6 +1,6 @@
 from __future__ import annotations
 from copy import deepcopy
-from math import sqrt
+from math import cos, radians, sin, sqrt
 
 from .vector3d import Vector3D
 
@@ -19,6 +19,11 @@ class Quaternion:
       the scalar number
     v: Vector3D
       the vector representing an axis
+
+  Static/Class Methods
+  ----------
+    getRotationQuaternion():
+      Returns the rotation quaternion.
 
   Methods
   ----------
@@ -41,6 +46,31 @@ class Quaternion:
     inverse():
       Returns the inverse of the quaternion.
   """
+  @staticmethod
+  def getRotationQuaternion(angle: float, axis: Vector3D) -> Quaternion:
+    """
+    Returns the rotation quaternion.
+
+    q_r = [ cos(1/2)*angle, sin(1/2)*angle*v]
+
+    Parameters
+    ----------
+      angle: float
+        the angle of rotation (in degrees)
+      axis: Vector3D
+        the axis to rotate by
+
+    Returns
+    ----------
+      (Quaternion) the rotation quaternion
+    """
+    angle_rad = radians(angle) # convert degree to radians
+
+    s = cos(0.5*angle_rad)
+    v = axis.normalize() * sin(0.5 * angle_rad)
+
+    return Quaternion(s, v)
+
   def __init__(self, s: float, v: Vector3D):
     self.s = s
     self.v = v
@@ -160,9 +190,9 @@ class Quaternion:
 
     Returns
     ----------
-      (Quaternion) the norm of the Quaternion
+      (Quaternion) the norm of the quaternion
     """
-    return sqrt(self.s*self.s + self.v.x * self.v.x + self.v.y * self.v.y + self.v.z * self.v.z)
+    return sqrt(self.s * self.s + self.v.x * self.v.x + self.v.y * self.v.y + self.v.z * self.v.z)
 
   def normalize(self) -> Quaternion:
     """
@@ -189,7 +219,7 @@ class Quaternion:
 
     q_conj = [s, -v]
 
-        Parameters
+    Parameters
     ----------
       None
 
@@ -205,7 +235,7 @@ class Quaternion:
 
     q_inv = q_conj / abs(q)^2
 
-        Parameters
+    Parameters
     ----------
       None
 

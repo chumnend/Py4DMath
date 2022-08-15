@@ -38,6 +38,8 @@ class Vector3D:
       Returns the magnitude of the vector.
     normalize():
       Returns the normalized unit vector.
+    rotate():
+      Rotates a vector using an angle and an axis.
   """
 
   def __init__(self, x: float = 0.0, y: float = 0.0, z: float = 0.0):
@@ -271,3 +273,39 @@ class Vector3D:
       )
     else:
       return Vector3D()
+
+  def rotate(self, angle: float, axis: Vector3D) -> Vector3D:
+    """
+    Rotates a vector using an angle and an axis.
+
+    q = [s, 0] (real quaternion)
+
+    p = [0, v] (pure quaternion)
+
+    p' = qpq*
+
+    Where,
+      p': the rotated resultant vector
+      q: the quaternion of rotation
+      q*: the inverse of the quaternion of rotation
+
+    Parameters
+    ----------
+      angle: float
+        the angle to rotate by
+      axis: Vector3D
+        the axis to rotate around (x-axis: 1, 0, 0) (y-axis: 0, 1, 0) (z-axis: 0, 0 ,1)
+
+    Returns
+    ----------
+      (Vector3D) the rotated vector
+    """
+    from .quaternion import Quaternion
+
+    p = Quaternion(0, self) # pure quaternion
+    q = Quaternion.getRotationQuaternion(angle, axis.normalize())
+    q_inv = q.inverse()
+
+    r = q * p * q_inv
+
+    return r.v

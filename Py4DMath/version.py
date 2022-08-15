@@ -1,4 +1,4 @@
 # Copyright (c) 2022, Nicholas Chumney. All rights reserved.
 # See LICENSE.txt for complete terms.
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"

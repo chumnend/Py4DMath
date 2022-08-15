@@ -1,6 +1,14 @@
 from Py4DMath import Quaternion, Vector3D
 from math import sqrt
 
+def test_Quaternion_getRotationQuaternion():
+  q_r = Quaternion.getRotationQuaternion(90, Vector3D(1, 0, 0))
+
+  assert round(q_r.s, 6) == 0.707107
+  assert round(q_r.v.x, 6) == 0.707107
+  assert round(q_r.v.y, 6) == 0
+  assert round(q_r.v.z, 6) == 0
+
 def test_Quaternion_init():
   v = Vector3D(1, 0, 0)
   q = Quaternion(90, v)

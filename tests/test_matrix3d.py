@@ -1,5 +1,10 @@
 from Py4DMath import Matrix3D, Vector3D
 
+def test_Matrix3D_getIdentityMatrix():
+  m = Matrix3D.getIdentityMatrix()
+
+  assert m.matrix == [1, 0, 0, 0, 1, 0, 0, 0, 1]
+
 def test_Matrix3D_init_with_no_values():
   m = Matrix3D()
 
@@ -110,9 +115,3 @@ def test_transform():
   assert r.x == 0
   assert r.y == 0
   assert r.z == 1
-
-def test_set_as_identity_matrix():
-  a = Matrix3D(7, 6, 3, 4, 2, 5, 10, 6, 4)
-  a.setAsIdentityMatrix()
-
-  assert a.matrix == [1, 0 ,0, 0, 1, 0, 0, 0, 1]
