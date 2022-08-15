@@ -28,6 +28,10 @@ upload: build
 test:
 	@python setup.py pytest
 
+.PHONY: test-full
+test-full:
+	@pytest --cov
+
 .PHONY: clean
 clean:
 	@rm -rf build dist
