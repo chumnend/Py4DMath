@@ -1,3 +1,9 @@
+Version 0.5.0
+2022-08-14
+- added rotate() method to Vector3D
+- renamed identity() static method to getIdentityMatrix on Matrix3D
+- added getRotationQuaternion() static method on Quaternion
+
 Version 0.4.0
 2022-08-14
 - added Quaternion class

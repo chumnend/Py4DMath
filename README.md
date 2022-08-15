@@ -14,6 +14,8 @@ It consists of the following classes:
 
 ## Documentation
 
+This section is meant to outline the classes, please see the documented section of code for more details.
+
 ### Vector3D
 
 ```
@@ -51,6 +53,8 @@ Methods
     Returns the magnitude of the vector.
   normalize():
     Returns the normalized unit vector.
+  rotate():
+    Rotates a vector using an angle and an axis.
 ```
 
 ### Matrix3D
@@ -64,9 +68,9 @@ Attributes
   matrix: float[9]
     the array representing the matrix (column-major format)
 
-Class Methods
+Static/Class Methods
 ----------
-  identity():
+  getIdentityMatrix():
     Returns an identity matrix.
 
 Methods
@@ -89,8 +93,6 @@ Methods
     Returns the transpose of the matrix.
   transform():
     Returns vector transformed by matrix.
-  setAsIdentityMatrix():
-    Sets matrix as an identity matrix.
 ```
 
 ### Quaternion
@@ -109,6 +111,11 @@ Attributes
     the scalar number
   v: Vector3D
     the vector representing an axis
+
+Static/Class Methods
+----------
+  getRotationQuaternion():
+    Returns the rotation quaternion.
 
 Methods
 ----------
