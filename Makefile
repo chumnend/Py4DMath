@@ -4,7 +4,8 @@ all: install-deps
 init:
 	@python -m virtualenv venv
 	@source venv/bin/activate
-	@pip install --upgrade pip setuptools wheel twine pytest pytest-runner
+	@pip install -r requirements.txt
+	@pre-commit install
 
 .PHONY: install-deps
 install-deps:
@@ -36,6 +37,6 @@ test-cov:
 clean:
 	@rm -rf build dist
 
-.PHONY: format
-format:
+.PHONY: lint
+lint:
 	@python -m black Py4DMath
