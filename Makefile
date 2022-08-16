@@ -28,8 +28,8 @@ upload: build
 test:
 	@python setup.py pytest
 
-.PHONY: test-full
-test-full:
+.PHONY: test-cov
+test-cov:
 	@pytest --cov
 
 .PHONY: clean

@@ -15,6 +15,11 @@ def test_Vector3D_init_with_values():
   assert v.y == 2.0
   assert v.z == 3.0
 
+def test_Vector3D_reptr():
+  v = Vector3D(1.0, 2.0, 3.0)
+
+  assert repr(v) == "Vector3D (x=1.0 y=2.0 z=3.0)"
+
 def test_Vector3D_copy():
   v = Vector3D(1, 2, 3)
   copy_v = v.copy()
@@ -115,12 +120,20 @@ def test_Vector3D_magnitude():
   assert m == sqrt(14)
 
 def test_Vector3D_normalize():
-  v1 = Vector3D(2, 3, 1)
-  n = v1.normalize()
+  v = Vector3D(2, 3, 1)
+  n = v.normalize()
 
   assert n.x == (1 / sqrt(14)) * 2
   assert n.y == (1 / sqrt(14)) * 3
   assert n.z == (1 / sqrt(14)) * 1
+
+def test_Vector3D_normalize_zero_mag():
+  v = Vector3D(0 ,0 ,0)
+  n = v.normalize()
+
+  assert n.x == 0
+  assert n.y == 0
+  assert n.z == 0
 
 def test_Vector3D_rotate():
   v = Vector3D(0, 1, 0)

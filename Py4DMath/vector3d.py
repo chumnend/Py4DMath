@@ -122,7 +122,7 @@ class Vector3D:
           None
         """
 
-        print(f"[{self.x} {self.y} {self.z}]")
+        print(f"[{self.x} {self.y} {self.z}]") #pragma: no cover
 
     def add(self, v: Vector3D) -> Vector3D:
         """

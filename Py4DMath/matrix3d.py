@@ -257,10 +257,9 @@ class Matrix3D:
         ----------
           None
         """
-
-        print(f"[{self.matrix[0]} {self.matrix[3]} {self.matrix[6]}]")
-        print(f"[{self.matrix[1]} {self.matrix[4]} {self.matrix[7]}]")
-        print(f"[{self.matrix[2]} {self.matrix[5]} {self.matrix[8]}]")
+        print(f"[{self.matrix[0]} {self.matrix[3]} {self.matrix[6]}]") # pragma: no cover
+        print(f"[{self.matrix[1]} {self.matrix[4]} {self.matrix[7]}]") # pragma: no cover
+        print(f"[{self.matrix[2]} {self.matrix[5]} {self.matrix[8]}]") # pragma: no cover
 
     def add(self, m: Matrix3D) -> Matrix3D:
         """
