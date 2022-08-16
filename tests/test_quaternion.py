@@ -1,3 +1,5 @@
+import pytest
+
 from Py4DMath import Quaternion, Vector3D
 from math import sqrt
 
@@ -17,6 +19,12 @@ def test_Quaternion_init():
   assert q.v.x == 1
   assert q.v.y == 0
   assert q.v.z == 0
+
+def test_Quaternion_repr():
+  v = Vector3D(1, 0, 0)
+  q = Quaternion(90, v)
+
+  assert repr(q) == "Quaternion (quaternion=90 + 1i + 0j + 0k)"
 
 def test_Quaternion_copy():
   v = Vector3D(1, 0, 0)
@@ -86,6 +94,12 @@ def test_Quaternion_mul_operator():
   assert f.v.y == 0
   assert f.v.z == 0
 
+def test_Quaternion_mul_error():
+  with pytest.raises(Exception):
+    v = Vector3D(1, 0, 0)
+    q = Quaternion(90, v)
+    res = q * "hello"
+
 def test_Quaternion_scalar_multiply():
   a = Quaternion(90, Vector3D(1, 0 , 0))
   b = a.scalar_multiply(2)
@@ -120,6 +134,12 @@ def test_Quaternion_normalize():
   assert n.v.x == 2 / sqrt(30)
   assert n.v.y == 3 / sqrt(30)
   assert n.v.z == 4 / sqrt(30)
+
+def test_Quaternion_normalize_error():
+  with pytest.raises(Exception):
+      v = Vector3D(0, 0, 0)
+      q = Quaternion(0, v)
+      q.normalize()
 
 def test_Quaternion_conjugate():
   q = Quaternion(90, Vector3D(1, 0, 0))
