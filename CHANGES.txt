@@ -1,3 +1,7 @@
+Version 1.0.0
+2022-08-16
+- release v1 of Py4DMath
+
 Version 0.6.0
 2022-08-15
 - added kwarg to set Matrix3D by row major
