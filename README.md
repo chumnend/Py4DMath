@@ -7,17 +7,18 @@ It consists of the following classes:
 2) Matrix
 3) Quaternions
 
-## Table of Contents
-- [Documentation](#documentation)
-- [Developer's Guide](#developers-guide)
-- [Contact](#contact)
+## Usage
 
-## Documentation
+Install the package using,
 
-This section is meant to outline the classes, please see the documented section of code for more details.
+```
+pip install Py4DMath
+```
+
+This package contains three main classes that are briefly described below. To learn more about
+each class please read through the comments found in the source code.
 
 ### Vector3D
-
 ```
 A class to represent a vector in 3D space.
 
@@ -58,7 +59,6 @@ Methods
 ```
 
 ### Matrix3D
-
 ```
 A class to represent a 3x3 matrix.
 
@@ -96,7 +96,6 @@ Methods
 ```
 
 ### Quaternion
-
 ```
 A class representing a Quaternion.
 
@@ -145,7 +144,15 @@ Methods
 - Python 3.10+
 - virtualenv
 
-### Installation
+### Getting Started
+
+The quickest way to get started working on this package is to run the command,
+
+```
+make init
+```
+
+Otherwise, you can follow these steps,
 
 1) Create a new virtual environment, if not already created
 
@@ -163,6 +170,12 @@ source venv/bin/activate
 
 ```
 make install-deps
+```
+
+4) Setup pre-commit hooks
+
+```
+pre-commit install
 ```
 
 ### Version Changes
@@ -183,8 +196,8 @@ To deploy to PyPi,
 
 2) Upload to PyPi using `make upload`
 
-## Contact 
-Nicholas Chumney - [nicholas.chumney@outlook.com](nicholas.chumney@outlook.com) 
+## Contact
+Nicholas Chumney - [nicholas.chumney@outlook.com](nicholas.chumney@outlook.com)
 
 ## Acknowledgements
 - [3D Math Engine Project](https://www.haroldserrano.com/math-engine-project/)
